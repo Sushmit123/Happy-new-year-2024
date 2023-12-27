@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #222;
+  gap: 50px;
+  flex-direction: column;
+}
+h1 {
+  position: relative;
+  padding: 20px 60px;
+  background: rgba(45, 45, 45, 1);
+  border-radius: 50px;
+  font-size: 5.5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.5s;
+  overflow: hidden;
+}
+h1:hover {
+  color: var(--clr); 
+}
+h1 span {
+  position: relative;
+  z-index: 1;
+}
+h1::before {
+  content: ' ';
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(var(--clr), transparent, transparent);
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  transition: 0.5s, top 0s, left 0s;
+}
+h1:hover::before {
+  opacity: 1;
+}
+h1.hover-effect {
+  color: var(--clr);
+  text-shadow: 0 0 15px var(--clr), 0 0 40px var(--clr);
+}
+h1.hover-effect::before {
+  opacity: 1;
+}
+h1.glow-effect {
+  color: var(--clr);
+}
+h1.glow-effect::before {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+    <h1 style="--clr:rgb(39, 212, 24);"><span>HAPPY NEW YEAR</span></h1>
+    <h1 style="--clr:#ff0;"><span>2024</span></h1>
+
+    <script>
+      let text = document.querySelectorAll('h1');
+      text.forEach(text => {
+        text.onmouseover = function(e){
+          let x = e.pageX - text.offsetLeft;
+          let y = e.pageY - text.offsetTop;
+          text.style.setProperty('--x',x+'px');
+          text.style.setProperty('--y',y+'px');
+        }
+      })
+    </script>
+
+</body>
+</html>
